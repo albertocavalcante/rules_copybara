@@ -1,0 +1,20 @@
+# Example Copybara configuration
+# This is a minimal valid config for testing
+
+core.workflow(
+    name = "default",
+    origin = git.origin(
+        url = "https://github.com/example/source.git",
+        ref = "main",
+    ),
+    destination = git.destination(
+        url = "https://github.com/example/destination.git",
+        fetch = "main",
+        push = "copybara/sync",
+    ),
+    origin_files = glob(["docs/**"]),
+    authoring = authoring.pass_thru("Copybara <copybara@example.com>"),
+    transformations = [
+        core.move("docs/", ""),
+    ],
+)

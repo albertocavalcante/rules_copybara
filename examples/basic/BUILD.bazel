@@ -1,0 +1,12 @@
+load("@rules_copybara//:copybara.bzl", "copybara")
+
+# Full workflow setup using the convenience macro
+copybara(
+    name = "sync_docs",
+    config = "copy.bara.sky",
+    workflow = "default",
+)
+
+# Creates:
+#   //:sync_docs.validate  - Validate the config
+#   //:sync_docs           - Run the 'default' workflow

@@ -1,0 +1,3 @@
+# Private implementation details
+# Currently empty - all functionality is in macros
+package(default_visibility = ["//:__subpackages__"])

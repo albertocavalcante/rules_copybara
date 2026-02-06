@@ -1,0 +1,8 @@
+load("@rules_copybara//:copybara.bzl", "copybara_validate")
+
+# Integration test: validate a config
+copybara_validate(
+    name = "validate_simple",
+    config = "testdata/simple.bara.sky",
+    tags = ["manual"],
+)

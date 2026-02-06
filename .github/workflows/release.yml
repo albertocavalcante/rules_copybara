@@ -1,0 +1,13 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  release:
+    uses: bazel-contrib/.github/.github/workflows/release_ruleset.yaml@v8
+    with:
+      mount_bazel_caches: false
+      release_files: MODULE.bazel

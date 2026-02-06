@@ -1,0 +1,9 @@
+"""Example: Basic usage of rules_copybara."""
+
+module(name = "rules_copybara_example_basic")
+
+bazel_dep(name = "rules_copybara", version = "0.0.0")
+local_path_override(
+    module_name = "rules_copybara",
+    path = "../..",
+)

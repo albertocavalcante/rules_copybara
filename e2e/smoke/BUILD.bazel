@@ -1,0 +1,23 @@
+load("@rules_copybara//:copybara.bzl", "copybara", "copybara_migrate_with_mode", "copybara_validate")
+
+# Test: Convenience macro
+copybara(
+    name = "sync",
+    config = "copy.bara.sky",
+    workflow = "default",
+)
+
+# Test: Validate standalone
+copybara_validate(
+    name = "validate_only",
+    config = "copy.bara.sky",
+    tags = ["manual"],
+)
+
+# Test: Migrate with mode flag
+copybara_migrate_with_mode(
+    name = "sync_with_mode",
+    config = "copy.bara.sky",
+    workflow = "default",
+    tags = ["manual"],
+)

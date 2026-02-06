@@ -1,0 +1,16 @@
+# Minimal Copybara config for testing validation
+
+core.workflow(
+    name = "test",
+    origin = git.origin(
+        url = "https://github.com/example/source.git",
+        ref = "main",
+    ),
+    destination = git.destination(
+        url = "https://github.com/example/dest.git",
+        fetch = "main",
+        push = "test-branch",
+    ),
+    origin_files = glob(["**"]),
+    authoring = authoring.pass_thru("Test <test@example.com>"),
+)

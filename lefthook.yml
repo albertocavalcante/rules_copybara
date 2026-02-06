@@ -1,0 +1,49 @@
+# Lefthook configuration for rules_copybara
+# Install: https://github.com/evilmartians/lefthook
+# Run: lefthook install
+
+pre-commit:
+  parallel: true
+  commands:
+    buildifier:
+      glob: "*.{bzl,bazel,BUILD,WORKSPACE}"
+      run: buildifier -mode=check -lint=warn {staged_files}
+      skip:
+        - merge
+        - rebase
+
+    dprint:
+      glob: "*.{md,json,yml,yaml}"
+      run: dprint check {staged_files}
+
+    shellcheck:
+      glob: "*.sh"
+      run: shellcheck {staged_files}
+
+commit-msg:
+  commands:
+    semantic-commit:
+      run: |
+        # Enforce semantic commit format: type(scope): description
+        # Types: feat, fix, docs, chore, refactor, test, ci, perf, build
+        COMMIT_MSG=$(cat "$1")
+        PATTERN="^(feat|fix|docs|chore|refactor|test|ci|perf|build)(\(.+\))?: .{1,72}$"
+        if ! echo "$COMMIT_MSG" | head -1 | grep -qE "$PATTERN"; then
+          echo "❌ Invalid commit message format"
+          echo ""
+          echo "Expected: type(scope): description"
+          echo "Types: feat, fix, docs, chore, refactor, test, ci, perf, build"
+          echo "Example: feat(migrate): add dry-run support"
+          echo ""
+          echo "Your message: $COMMIT_MSG"
+          exit 1
+        fi
+
+pre-push:
+  parallel: true
+  commands:
+    bazel-build:
+      run: bazel build //...
+
+    bazel-test:
+      run: bazel test //...

@@ -1,0 +1,15 @@
+# Bazel
+bazel-*
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage.out
+*.coverprofile

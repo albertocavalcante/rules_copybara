@@ -1,0 +1,7 @@
+# Syntax highlighting for GitHub
+*.bzl linguist-language=Starlark
+*.bara.sky linguist-language=Starlark
+*.bazel linguist-language=Starlark
+BUILD linguist-language=Starlark
+BUILD.bazel linguist-language=Starlark
+MODULE.bazel linguist-language=Starlark

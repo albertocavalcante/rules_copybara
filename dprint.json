@@ -1,0 +1,23 @@
+{
+  "$schema": "https://dprint.dev/schemas/v0.json",
+  "includes": ["**/*.md", "**/*.json", "**/*.yml", "**/*.yaml"],
+  "excludes": [
+    "MODULE.bazel.lock",
+    "**/node_modules/",
+    "bazel-*/"
+  ],
+  "plugins": [
+    "https://plugins.dprint.dev/markdown-0.17.8.wasm",
+    "https://plugins.dprint.dev/json-0.19.4.wasm",
+    "https://plugins.dprint.dev/g-plane/pretty_yaml-v0.5.0.wasm"
+  ],
+  "markdown": {
+    "lineWidth": 100
+  },
+  "json": {
+    "indentWidth": 2
+  },
+  "yaml": {
+    "indentWidth": 2
+  }
+}

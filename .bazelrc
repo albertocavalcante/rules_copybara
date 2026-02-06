@@ -1,0 +1,29 @@
+# Bzlmod is default in Bazel 8+/9+
+common --enable_bzlmod
+
+# Lock file - commit for reproducibility
+common --lockfile_mode=error
+
+# Stricter builds
+build --incompatible_strict_action_env
+build --verbose_failures
+
+# Don't create runfile symlinks (faster builds)
+build --nobuild_runfile_links
+
+# For rulesets - don't force updating deps
+common --check_direct_dependencies=off
+
+# Catch glob errors
+build --incompatible_disallow_empty_glob
+
+# Test settings
+test --test_output=errors
+test --test_verbose_timeout_warnings
+
+# CI-specific (loaded via --config=ci)
+build:ci --remote_download_outputs=minimal
+test:ci --flaky_test_attempts=2
+
+# Update lockfile (use when adding deps)
+common:update --lockfile_mode=update

@@ -1,0 +1,9 @@
+"""e2e smoke test for rules_copybara."""
+
+module(name = "rules_copybara_e2e_smoke")
+
+bazel_dep(name = "rules_copybara", version = "0.0.0")
+local_path_override(
+    module_name = "rules_copybara",
+    path = "../..",
+)
